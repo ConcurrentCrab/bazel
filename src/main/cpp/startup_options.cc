@@ -120,6 +120,9 @@ StartupOptions::StartupOptions(const string &product_name,
   }
 #endif  // defined(_WIN32) || defined(__CYGWIN__)
 
+  string bazel_root = blaze_util::MakeAbsolute(blaze::GetPathEnv("BAZEL_ROOT"));
+  if (!bazel_root.empty())
+    output_root = bazel_root;
   const string product_name_lower = GetLowercaseProductName();
   output_user_root = blaze_util::JoinPath(
       output_root, "_" + product_name_lower + "_" + GetUserName());
