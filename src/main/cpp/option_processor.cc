@@ -375,7 +375,10 @@ blaze_exit_code::ExitCode OptionProcessor::GetRcFiles(
 
   // Get the user rc: $HOME/.bazelrc (unless --nohome_rc)
   if (SearchNullaryOption(cmd_line->startup_args, "home_rc", true)) {
-    const std::string home = blaze::GetHomeDir();
+    std::string home = blaze::GetHomeDir();
+    std::string bazel_home = blaze::GetPathEnv("BAZEL_HOME");
+    if (!bazel_home.empty())
+      home = bazel_home;
     if (!home.empty()) {
       rc_files.push_back(blaze_util::JoinPath(home, kRcBasename));
     }

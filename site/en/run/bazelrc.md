@@ -46,6 +46,7 @@ before the command (`build`, `test`, etc).
 
     Path:
 
+    - If `$BAZEL_HOME` is set: `$BAZEL_HOME/.bazelrc`
     - On Linux/macOS/Unixes: `$HOME/.bazelrc`
     - On Windows: `%USERPROFILE%\.bazelrc` if exists, or `%HOME%/.bazelrc`
 
